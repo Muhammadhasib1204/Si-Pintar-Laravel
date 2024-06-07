@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class MahasiswaController extends Controller
@@ -36,6 +37,12 @@ class MahasiswaController extends Controller
         $data = Mahasiswa::find($id);
         $data->delete();
         return redirect()->route('Mahasiswa');
+    }
+
+    public function exportpdf(){
+        $data = Mahasiswa::all();
+        $PDF = PDF::loadView('Mahasiswas/reportMahasiswa', array('data' => $data));
+        return $PDF->stream('data-Mahasiswa.pdf');
     }
 
 }

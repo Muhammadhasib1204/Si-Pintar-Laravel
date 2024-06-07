@@ -1,14 +1,14 @@
 @extends('layout.app') @section('content')
 
 <div class="pagetitle">
-    <h1>Data Mahasiswa</h1>
+    <h1>Data Matkul</h1>
 </div><!-- End Page Title -->
 <div class="container-fluid">
     <div class="card">
       <div class="card-header">
         <div class="buttons">
-        <a href="{{ route('addMahasiswa') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Data</a>
-        <a href="{{ route('pdfMahasiswa') }}" target="_blank" class="btn btn-danger"><i class="fas fa-print"></i> Cetak PDF</a>  
+        <a href="{{ route('addMatkul') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Data</a>
+        <a href="{{ route('pdfMatkul') }}" target="_blank" class="btn btn-danger"><i class="fas fa-print"></i> Cetak PDF</a>
     </div>
     </div>
     <div class="row">
@@ -18,11 +18,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Mahasiswa</th>
-                                <th>NIM Mahasiswa</th>
-                                <th>Kelas</th>
-                                <th>Jurusan</th>
-                                <th>Prodi</th>
+                                <th>Nama Matkul</th>
+                                <th>Jumlah SKS</th>
+                                <th>Jam Matkul</th>
+                                <th>Ruangan Matkul</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -31,16 +30,15 @@
                             @foreach ($data as $item=>$row)
                             <tr>
                                     <td style="text-align: center;">{{ $item+1 }}</td>
-                                    <td>{{ $row->nama}}</td>
-                                    <td>{{ $row->nim }}</td>
-                                    <td>{{ $row->kelas }}</td>
-                                    <td>{{ $row->jurusan }}</td>
-                                    <td>{{ $row->prodi }}</td>
+                                    <td>{{ $row->nama_matkul}}</td>
+                                    <td>{{ $row->jumlah_sks }}</td>
+                                    <td>{{ $row->jam_matkul }}</td>
+                                    <td>{{ $row->ruangan_matkul }}</td>
                                     <td>
-                                         <a class='btn-edit' href="{{ route('updateMahasiswa', $row->id) }}">
+                                         <a class='btn-edit' href="{{ route('updateMatkul', $row->id) }}">
                                Edit
                         </a> | 
-                        <a class='btn-delete' href="{{ route('deleteMahasiswa', $row->id) }}">
+                        <a class='btn-delete' href="{{ route('deleteMatkul', $row->id) }}">
                             Hapus
                         </a>
                                     </td>
@@ -48,7 +46,7 @@
                             @endforeach
                             @else
                                 <tr>
-                                    <td colspan="7"><p class="text text-center">No results found.</p></td>
+                                    <td colspan="6"><p class="text text-center">No results found.</p></td>
                                 </tr>
                             @endif
                         </tbody>
